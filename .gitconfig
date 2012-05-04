@@ -1,1 +1,3 @@
-/home/john/.gitconfig
+[user]
+	name = John Driscoll
+	email = johnoliverdriscoll@gmail.com

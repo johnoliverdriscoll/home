@@ -1,1 +1,13 @@
-/home/john/.screenrc
+shell -bash
+escape  ^|\
+bindkey ^[o stuff ^\
+bindkey ^[t stuff ^\\
+bindkey ^[\ stuff ^\\\
+bindkey ^O  stuff ^\\\\
+bindkey ^Z  stuff ^Z
+
+vbell off
+startup_message off
+defscrollback 1024
+nonblock on
+altscreen on
