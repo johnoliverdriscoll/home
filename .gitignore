@@ -1,6 +1,12 @@
 *
-!.screenrc
-!.emacs.d
-!.emacs
-!.gitconfig
-!.gitignore
+!/.screenrc
+!/.emacs
+!/.gitconfig
+!/.gitignore
+!/.emacs.d
+!/.emacs.d/autosave
+!/.emacs.d/autosave/autosave
+!/.emacs.d/backup
+!/.emacs.d/backup/backup
+!/.emacs.d/site-lisp
+!/.emacs.d/site-lisp/*.el
