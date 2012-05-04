@@ -1,0 +1,3 @@
+/.emacs.d/autosave/*
+/.emacs.d/backup/*
+/.emacs.d/site-lisp/*.elc
