@@ -87,7 +87,7 @@
                                 " *code-conversion-work*" " *Minibuf-1*"
                                 " *w3m cache*" " *Malabar Groovy eval*" 
                                 " *code-converting-work*" " *srecode-map-tmp*"
-                                "*Malabar Compilation*"))
+                                "*Malabar Compilation*" "*Malabar Compile Server*" "*Malabar Eval Server*" "*Malabar Groovy*"))
 (setq tabbar-buffer-list-function
       (lambda ()
         (remove-if
