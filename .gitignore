@@ -1,4 +1,5 @@
 *
+!/README.md
 !/.screenrc
 !/.emacs
 !/.gitconfig
@@ -10,3 +11,8 @@
 !/.emacs.d/backup/backup
 !/.emacs.d/site-lisp
 !/.emacs.d/site-lisp/*.el
+!/.emacs.d/site-lisp/malabar-1.4.0
+!/.emacs.d/site-lisp/malabar-1.4.0/lib
+!/.emacs.d/site-lisp/malabar-1.4.0/lib/*.jar
+!/.emacs.d/site-lisp/malabar-1.4.0/lisp
+!/.emacs.d/site-lisp/malabar-1.4.0/lisp/*.el

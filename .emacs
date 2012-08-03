@@ -45,6 +45,16 @@
 
 ;; local site-lisp
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/malabar-1.4.0/lisp")
+
+(setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
+                                  global-semanticdb-minor-mode
+                                  global-semantic-idle-summary-mode
+                                  global-semantic-mru-bookmark-mode))
+(semantic-mode 1)
+(require 'malabar-mode)
+(setq malabar-groovy-lib-dir "/home/john/.emacs.d/site-lisp/malabar-1.4.0/lib")
+(add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
 
 ;; no linewrap character
 (set-display-table-slot standard-display-table 'wrap ?\ )
@@ -55,16 +65,12 @@
   (c-set-offset 'arglist-intro '+)
   (c-set-offset 'arglist-close 0))
 (add-hook 'java-mode-hook 'my-indent-setup)
+(add-hook 'java-mode-hook (lambda () (setq indent-tabs-mode t)))
 
 ;; custom file extensions for major mode
 (require 'coffee-mode)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
 (add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
-
-(add-hook 'java-mode-hook (lambda ()
-                            (setq c-basic-offset 2
-                                  tab-width 2
-                                  indent-tabs-mode t)))
 
 (require 'sws-mode)
 (require 'jade-mode)
@@ -79,7 +85,9 @@
 (setq *tabbar-ignore-buffers* '("*Messages*" " *Echo Area 0*" "*Completions*"
                                 " *Echo Area 1*" " *Minibuf-0*" "*scratch*"
                                 " *code-conversion-work*" " *Minibuf-1*"
-                                " *w3m cache*"))
+                                " *w3m cache*" " *Malabar Groovy eval*" 
+                                " *code-converting-work*" " *srecode-map-tmp*"
+                                "*Malabar Compilation*"))
 (setq tabbar-buffer-list-function
       (lambda ()
         (remove-if
