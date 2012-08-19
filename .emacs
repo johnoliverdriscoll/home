@@ -63,9 +63,10 @@
 (setq case-fold-search t)
 (defun my-indent-setup ()
   (c-set-offset 'arglist-intro '+)
-  (c-set-offset 'arglist-close 0))
+  (c-set-offset 'arglist-close 0)
+  (c-set-offset 'c-basic-offset 4))
 (add-hook 'java-mode-hook 'my-indent-setup)
-(add-hook 'java-mode-hook (lambda () (setq indent-tabs-mode t)))
+(add-hook 'java-mode-hook (lambda () (setq indent-tabs-mode nil)))
 
 ;; custom file extensions for major mode
 (require 'coffee-mode)
@@ -87,7 +88,8 @@
                                 " *code-conversion-work*" " *Minibuf-1*"
                                 " *w3m cache*" " *Malabar Groovy eval*" 
                                 " *code-converting-work*" " *srecode-map-tmp*"
-                                "*Malabar Compilation*" "*Malabar Compile Server*" "*Malabar Eval Server*" "*Malabar Groovy*"))
+                                "*Malabar Compilation*" "*Malabar Compile Server*"
+                                "*Malabar Eval Server*" "*Malabar Groovy*"))
 (setq tabbar-buffer-list-function
       (lambda ()
         (remove-if
