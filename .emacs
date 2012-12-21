@@ -1,4 +1,4 @@
-(custom-set-variables
+t(custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
@@ -19,7 +19,7 @@
  '(python-indent 2)
  '(ruby-deep-indent-paren (quote (40 91 93 t)))
  '(ruby-deep-indent-paren-style nil)
- '(standard-indent 2))
+ '(standard-indent 4))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -45,33 +45,32 @@
 
 ;; local site-lisp
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/malabar-1.4.0/lisp")
 
+;; indents
+(setq-default c-basic-offset 4)
+(c-set-offset 'arglist-intro '+)
+(c-set-offset 'arglist-close 0)
+
+;; Malabar mode
 (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
                                   global-semanticdb-minor-mode
                                   global-semantic-idle-summary-mode
                                   global-semantic-mru-bookmark-mode))
 (semantic-mode 1)
 (require 'malabar-mode)
-(setq malabar-groovy-lib-dir "/home/john/.emacs.d/site-lisp/malabar-1.4.0/lib")
-(add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
+(setq malabar-groovy-lib-dir "/path/to/malabar/lib")
+(add-to-list 'auto-mode-alist '("\\.java$" . malabar-mode))
 
 ;; no linewrap character
 (set-display-table-slot standard-display-table 'wrap ?\ )
 
-;; indents
-(setq case-fold-search t)
-(defun my-indent-setup ()
-  (c-set-offset 'arglist-intro '+)
-  (c-set-offset 'arglist-close 0)
-  (c-set-offset 'c-basic-offset 4))
-(add-hook 'java-mode-hook 'my-indent-setup)
-(add-hook 'java-mode-hook (lambda () (setq indent-tabs-mode nil)))
-
 ;; custom file extensions for major mode
 (require 'coffee-mode)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
-(add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
+(add-to-list 'auto-mode-alist '("^Cakefile$" . coffee-mode))
+
+(add-hook 'js2-mode-hook (lambda ()
+                           (c-set-offset 'statement-block-intro '+)))
 
 (require 'sws-mode)
 (require 'jade-mode)
@@ -86,8 +85,8 @@
 (setq *tabbar-ignore-buffers* '("*Messages*" " *Echo Area 0*" "*Completions*"
                                 " *Echo Area 1*" " *Minibuf-0*" "*scratch*"
                                 " *code-conversion-work*" " *Minibuf-1*"
-                                " *w3m cache*" " *Malabar Groovy eval*" 
-                                " *code-converting-work*" " *srecode-map-tmp*"
+                                " *w3m cache*" " *Malabar Groovy eval*"
+                                " *C parse hack 1*" " *code-converting-work*"
                                 "*Malabar Compilation*" "*Malabar Compile Server*"
                                 "*Malabar Eval Server*" "*Malabar Groovy*"))
 (setq tabbar-buffer-list-function
@@ -147,3 +146,5 @@ If point was already at that position, move point to beginning of line."
           (lambda ()
             (local-set-key [?\M-n] 'tabbar-forward)
             (local-set-key [?\M-p] 'tabbar-backward)))
+
+(put 'upcase-region 'disabled nil)
