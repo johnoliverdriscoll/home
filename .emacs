@@ -3,22 +3,9 @@ t(custom-set-variables
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(coffee-tab-width 2)
  '(indent-tabs-mode nil)
  '(initial-scratch-message "")
- '(js-expr-indent-offset 0)
- '(js-indent-level 2)
- '(js2-auto-indent-p t)
- '(js2-basic-offset 2)
- '(js2-cleanup-whitespace t)
- '(js2-consistent-level-indent-inner-bracket-p t)
- '(js2-enter-indents-newline t)
- '(js2-indent-on-enter-key t)
- '(js2-rebind-eol-bol-keys nil)
- '(js2-use-ast-for-indentation-p t)
  '(python-indent 2)
- '(ruby-deep-indent-paren (quote (40 91 93 t)))
- '(ruby-deep-indent-paren-style nil)
  '(standard-indent 4))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -51,32 +38,8 @@ t(custom-set-variables
 (c-set-offset 'arglist-intro '+)
 (c-set-offset 'arglist-close 0)
 
-;; Malabar mode
-(setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
-                                  global-semanticdb-minor-mode
-                                  global-semantic-idle-summary-mode
-                                  global-semantic-mru-bookmark-mode))
-(semantic-mode 1)
-(require 'malabar-mode)
-(setq malabar-groovy-lib-dir "/path/to/malabar/lib")
-(add-to-list 'auto-mode-alist '("\\.java$" . malabar-mode))
-
 ;; no linewrap character
 (set-display-table-slot standard-display-table 'wrap ?\ )
-
-;; custom file extensions for major mode
-(require 'coffee-mode)
-(add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
-(add-to-list 'auto-mode-alist '("^Cakefile$" . coffee-mode))
-
-(add-hook 'js2-mode-hook (lambda ()
-                           (c-set-offset 'statement-block-intro '+)))
-
-(require 'sws-mode)
-(require 'jade-mode)
-(add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
-(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
-(add-to-list 'auto-mode-alist '("\\.less$" . css-mode))
 
 ;; Tabbar
 (setq mouse-wheel-mode ())
@@ -85,10 +48,7 @@ t(custom-set-variables
 (setq *tabbar-ignore-buffers* '("*Messages*" " *Echo Area 0*" "*Completions*"
                                 " *Echo Area 1*" " *Minibuf-0*" "*scratch*"
                                 " *code-conversion-work*" " *Minibuf-1*"
-                                " *w3m cache*" " *Malabar Groovy eval*"
-                                " *C parse hack 1*" " *code-converting-work*"
-                                "*Malabar Compilation*" "*Malabar Compile Server*"
-                                "*Malabar Eval Server*" "*Malabar Groovy*"))
+                                " *C parse hack 1*" " *code-converting-work*"))
 (setq tabbar-buffer-list-function
       (lambda ()
         (remove-if
