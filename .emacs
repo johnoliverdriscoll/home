@@ -1,17 +1,18 @@
-t(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(indent-tabs-mode nil)
  '(initial-scratch-message "")
+ '(js-indent-level 2)
  '(python-indent 2)
- '(standard-indent 4))
+ '(standard-indent 2))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 (require 'cl)
@@ -34,9 +35,14 @@ t(custom-set-variables
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 
 ;; indents
-(setq-default c-basic-offset 4)
-(c-set-offset 'arglist-intro '+)
-(c-set-offset 'arglist-close 0)
+(setq-default c-indent-level 2)
+(setq-default c-basic-offset 2)
+
+(defun my-arg-list-indentation ()
+  (c-set-offset 'arglist-intro '+)
+  (c-set-offset 'arglist-close 0))
+(add-hook 'c-mode-hook 'my-arg-list-indentation)
+(add-hook 'c++-mode-hook 'my-arg-list-indentation)
 
 ;; no linewrap character
 (set-display-table-slot standard-display-table 'wrap ?\ )
@@ -84,6 +90,9 @@ t(custom-set-variables
 ; Rebind buffer switching commands to not use the fucking arrow keys
 (global-set-key [?\M-n] 'tabbar-forward)
 (global-set-key [?\M-p] 'tabbar-backward)
+
+; Force C++ mode when opening header files
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ; Rebind ^H to backspace
 (global-set-key [?\C-h] 'delete-backward-char)
