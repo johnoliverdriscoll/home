@@ -1,3 +1,10 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -6,6 +13,9 @@
  '(indent-tabs-mode nil)
  '(initial-scratch-message "")
  '(js-indent-level 2)
+ '(package-selected-packages
+   (quote
+    (rust-mode tabbar session pod-mode muttrc-mode mutt-alias markdown-mode initsplit htmlize graphviz-dot-mode folding eproject diminish csv-mode browse-kill-ring boxquote bm bar-cursor apache-mode)))
  '(python-indent 2)
  '(standard-indent 2))
 (custom-set-faces
@@ -16,6 +26,7 @@
  )
 
 (require 'cl)
+(require 'rust-mode)
 
 ;; no splash message
 (setq inhibit-splash-screen t)
@@ -33,6 +44,7 @@
 
 ;; local site-lisp
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
+(load "haxe-mode.el")
 
 ;; indents
 (setq-default c-indent-level 2)
@@ -88,11 +100,28 @@
  (add-hook 'first-change-hook 'ztl-on-buffer-modification)
 
 ; Rebind buffer switching commands to not use the fucking arrow keys
-(global-set-key [?\M-n] 'tabbar-forward)
-(global-set-key [?\M-p] 'tabbar-backward)
+;(global-set-key [?\M-n] 'tabbar-forward)
+;(global-set-key [?\M-p] 'tabbar-backward)
+
+(defvar my-mode-map (make-sparse-keymap) "Keymap for `my-mode'.")
+(define-minor-mode my-mode
+  "A minor mode so that my key settings override annoying major modes."
+  :init-value t
+  :lighter " my-mode"
+    :keymap my-mode-map)
+(define-globalized-minor-mode global-my-mode my-mode my-mode)
+(add-to-list 'emulation-mode-map-alists `((my-mode . ,my-mode-map)))
+(define-key my-mode-map [?\M-n] 'tabbar-forward)
+(define-key my-mode-map [?\M-p] 'tabbar-backward)
+
+(provide 'my-mode)
+
 
 ; Force C++ mode when opening header files
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
 
 ; Rebind ^H to backspace
 (global-set-key [?\C-h] 'delete-backward-char)
