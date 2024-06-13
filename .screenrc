@@ -11,3 +11,4 @@ startup_message off
 defscrollback 1024
 nonblock on
 altscreen on
+setenv COLORTERM ""

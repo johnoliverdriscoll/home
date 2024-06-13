@@ -26,7 +26,6 @@
  )
 
 (require 'cl)
-(require 'rust-mode)
 
 ;; no splash message
 (setq inhibit-splash-screen t)
@@ -44,7 +43,6 @@
 
 ;; local site-lisp
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
-(load "haxe-mode.el")
 
 ;; indents
 (setq-default c-indent-level 2)
@@ -119,9 +117,6 @@
 
 ; Force C++ mode when opening header files
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
 
 ; Rebind ^H to backspace
 (global-set-key [?\C-h] 'delete-backward-char)
