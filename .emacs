@@ -1,4 +1,3 @@
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -26,6 +25,8 @@
  )
 
 (require 'cl)
+
+(require 'rust-mode)
 
 ;; no splash message
 (setq inhibit-splash-screen t)
@@ -64,7 +65,9 @@
 (setq *tabbar-ignore-buffers* '("*Messages*" " *Echo Area 0*" "*Completions*"
                                 " *Echo Area 1*" " *Minibuf-0*" "*scratch*"
                                 " *code-conversion-work*" " *Minibuf-1*"
-                                " *C parse hack 1*" " *code-converting-work*"))
+                                " *C parse hack 1*" " *code-converting-work*"
+                                "*Warnings*" "*eldoc for custom-set-variables*"
+                                "*Async-native-compile-log*" "*eldoc for require*"))
 (setq tabbar-buffer-list-function
       (lambda ()
         (remove-if
